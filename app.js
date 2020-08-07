@@ -5,13 +5,18 @@ const app = new Vue({
         user: 'Anvit',
         fruits: [
             {name: 'banana', qty: 6, emoji: '🍌'},
-            {name: 'cherry', qty: 0, emoji: '🍒'},
+            {name: 'cherry', qty: 3, emoji: '🍒'},
             {name: 'orange', qty: 4, emoji: '🍊'},
         ]
     },
     methods: {
-        displayName: function() {
-            console.log(this.user);
+        addToCart: function(fruit) {
+            const fruitIndex = this.fruits.indexOf(fruit);
+
+            if (fruitIndex || fruitIndex === 0) {
+                console.log(this.fruits[fruitIndex]);
+                this.fruits[fruitIndex].qty--;
+            }
         }
     }
 });
