@@ -21,6 +21,14 @@ ul {
 
 .welcome {
     font-size: 24px;
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    padding: 10px;
+}
+
+.cart {
+    margin-left: 20px;
 }
 
 .container {

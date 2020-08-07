@@ -11,6 +11,10 @@
         <div class="container">
             <section class="welcome">
                 Welcome {{ user }}
+                <div class="cart" v-if="cart.length > 0">
+                    <span class="cart-icon">🛒</span>
+                    <span> {{ cart.length }} </span>
+                </div>
             </section>
             <ul class="fruit-list">
                 <template v-for="item in fruits">
