@@ -10,28 +10,14 @@
     <main id="app" class="app">
         <div class="container">
             <section class="welcome">
-                Welcome {{ user }}
+                <welcome v-bind:name='user'></welcome>
                 <div class="cart" v-if="cart.length > 0">
                     <span class="cart-icon">🛒</span>
                     <span> {{ cart.length }} </span>
                 </div>
             </section>
             <ul class="fruit-list">
-                <template v-for="item in fruits">
-                    <li v-if="item.qty > 0" class="fruit">
-                        <div class="fruit-name">
-                            {{ item.emoji }}
-                        </div>
-                        <div class="fruit-footer">
-                            <span class="fruit-qty">
-                                Stock: {{ item.qty }}
-                            </span>
-                            <span class="fruit-button">
-                                <button v-on:click="addToCart(item)">Add to Cart</button>
-                            </span>
-                        </div>
-                    </li>
-                </template>
+                <fruit v-for="fruit in fruits" v-bind:item='fruit' v-on:add-item="addToCart"></fruit>
             </ul>
         </div>
     </main>

@@ -59,6 +59,10 @@ ul {
     margin: 10px 0;
 }
 
+.fruit-qty.lowStock {
+    color: tomato;
+}
+
 .fruit-button button {
     font-size: 16px;
     border: 0;
