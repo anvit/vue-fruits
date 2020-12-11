@@ -1,14 +1,11 @@
 <template>
-    <li v-if="item.qty > 0" class="fruit">
+    <li v-if="item.qty > 0" class="card">
         <div class="fruit-name">
             {{ item.emoji }}
         </div>
-        <div class="fruit-footer">
+        <div class="fruit-footer" v-on:click="$emit('add-item', item)">
             <span v-bind:class="[ item.qty <= 2 ? 'lowStock' : 'highStock']" class="fruit-qty">
-                Stock: {{ item.qty }}
-            </span>
-            <span class="fruit-button">
-                <button v-on:click="$emit('add-item', item)">Add to Cart</button>
+                In stock: {{ item.qty }}
             </span>
         </div>
     </li>
@@ -16,6 +13,7 @@
 
 <script>
 export default {
+    name: 'fruit',
     props: {
         item: Object
     }
@@ -33,9 +31,8 @@ export default {
 }
 
 .fruit-name {
-    font-size: 56px;
-    padding: 72px;
-    border-bottom: 2px solid rgba(220, 20, 0, 0.25 )
+    font-size: 5rem;
+    padding: 48px;
 }
 
 .fruit-footer {
@@ -43,7 +40,11 @@ export default {
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    margin: 10px 0;
+    padding: 10px 0;
+    font-weight: 600;
+    background-color: crimson;
+    color: blanchedalmond;
+    border-radius: 0 0 5px 5px;
 }
 
 .fruit-qty.lowStock {
@@ -66,5 +67,11 @@ export default {
 
 .fruit-button button:active {
     background-color: darkslateblue;
+}
+
+.card {
+    background: white;
+    border-radius: 5px;
+    cursor: pointer;
 }
 </style>

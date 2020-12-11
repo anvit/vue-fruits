@@ -1,16 +1,12 @@
 <template>
     <div class="app">
         <div class="container">
+            <h1>Nook's Cranny</h1>
             <section class="welcome">
                 <welcome v-bind:name='user'></welcome>
-                <div class="cart" v-if="cart.length > 0">
-                    <span class="cart-icon">🛒</span>
-                    <span> {{ cart.length }} </span>
-                </div>
+                <cart v-bind:cartItems="cartItems"></cart>
             </section>
-            <ul class="fruit-list">
-                <fruit v-for="fruit in fruits" v-bind:item='fruit' v-on:add-item="addToCart" v-bind:key="fruit.id"></fruit>
-            </ul>
+            <fruitList  v-bind:fruits="fruits" v-on:add-item="addToCart"></fruitList>
         </div>
     </div>
 </template>
@@ -18,13 +14,15 @@
 <script>
 // @ is an alias to /src
 import Welcome from '@/components/Welcome.vue'
-import Fruit from '@/components/Fruit.vue'
+import FruitList from '@/components/FruitList.vue'
+import Cart from '@/components/Cart.vue'
 
 export default {
     name: 'Home',
     components: {
         Welcome,
-        Fruit
+        FruitList,
+        Cart
     },
     data () {
         return {
@@ -37,15 +35,16 @@ export default {
                 { id: 4, name: 'pear', qty: 3, emoji: '🍐' },
                 { id: 5, name: 'coconut', qty: 5, emoji: '🥥' }
             ],
-            cart: []
+            cartItems: []
         }
     },
     methods: {
         addToCart: function (fruit) {
+            console.log(fruit);
             const fruitIndex = this.fruits.indexOf(fruit);
 
             if (fruitIndex || fruitIndex === 0) {
-                this.cart.push(fruit);
+                this.cartItems.push(fruit);
                 this.fruits[fruitIndex].qty--;
             }
         }
@@ -69,9 +68,9 @@ ul {
 }
 
 .app {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  text-align: center;
+  background-color: #282c34;
+  color: white;
 }
 
 .welcome {
@@ -80,10 +79,7 @@ ul {
     justify-content: center;
     width: 300px;
     padding: 10px;
-}
-
-.cart {
-    margin-left: 20px;
+    margin:50px;
 }
 
 .container {
@@ -92,9 +88,4 @@ ul {
     align-items: center;
 }
 
-.fruit-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 50px;
-}
 </style>

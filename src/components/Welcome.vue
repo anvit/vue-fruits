@@ -9,3 +9,9 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    p {
+        font-size: 1.25rem;
+    }
+</style>
